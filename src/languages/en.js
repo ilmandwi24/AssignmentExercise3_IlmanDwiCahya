@@ -76,8 +76,10 @@ export default {
   selected_plan: '{plan} ({Payment})',
   selected_addons: '{addons}',
   total_payment: 'Total (per {payment})',
-
+  total_payment_monthly: '+$ {price}/mo',
+  total_payment_yearly: '+$ {price}/yr',
   app_thank_payment: 'Thank you!',
+  button_change: 'Change',
   app_thank_description:
     'Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free to email us at {email}.',
 
