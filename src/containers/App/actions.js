@@ -12,7 +12,7 @@ import {
   SET_PACKAGE_SELECT_PLAN,
   SET_ADDONS,
   SET_SIDEBARSTEP,
-  SET_UPDATEADDONS,
+  SET_RESETADDONS,
 } from '@containers/App/constants';
 
 export const setLocale = (locale) => ({
@@ -93,7 +93,6 @@ export const setSidebarStep = (step) => ({
   step,
 });
 
-export const updateAddOns = (tahunan) => ({
-  type: SET_UPDATEADDONS,
-  tahunan,
+export const setResetAddOns = () => ({
+  type: SET_RESETADDONS,
 });

@@ -38,9 +38,6 @@ const CountPayment = ({ intl: { formatMessage }, addOns, plans, locale }) => {
     }
   }, [addOns, plans, locale]);
 
-  useEffect(() => {
-    dispatch(updateAddOns(plans.tahunan));
-  }, [dispatch, plans.tahunan]);
   const handleBack = () => {
     dispatch(setStepBack());
   };
