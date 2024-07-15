@@ -19,6 +19,8 @@ const CountPayment = ({ intl: { formatMessage }, addOns, plans, locale }) => {
   const [confirm, setConfirm] = useState(false);
   const total = countTotalPrice(planPrice, addOns);
 
+  console.log(addOns);
+
   useEffect(() => {
     if (locale === 'en') {
       if (plans.tahunan) {
@@ -94,10 +96,10 @@ const CountPayment = ({ intl: { formatMessage }, addOns, plans, locale }) => {
           {addOns.map((item) => (
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <Typography component="p" color="gray">
-                {item.addons}
+                {formatMessage({ id: item.id })}
               </Typography>
               <Typography component="p" color="hsl(213, 89%, 18%)">
-                {item.price}/{plans.tahunan ? formatMessage({ id: 'app_yr' }) : formatMessage({ id: 'app_mo' })}
+                ${item.price}/{plans.tahunan ? formatMessage({ id: 'app_yr' }) : formatMessage({ id: 'app_mo' })}
               </Typography>
             </Box>
           ))}
