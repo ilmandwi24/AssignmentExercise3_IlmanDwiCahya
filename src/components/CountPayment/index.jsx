@@ -1,26 +1,40 @@
 import ButtonStep from '@components/Button';
 import { Box, Card, CardContent, Divider, Typography } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import Feedback from '@components/Feedback';
 import { setSidebarStep, setStepBack } from '@containers/App/actions';
-import { selectSelectPlan } from '@containers/App/selectors';
+import { selectAddOns, selectLocale, selectSelectPlan } from '@containers/App/selectors';
 import { countTotalPrice } from '@utils/countTotalPrice';
 
 import classes from './style.module.scss';
 
 const CountPayment = () => {
   const dispatch = useDispatch();
-  const { tahunan } = useSelector(selectSelectPlan);
+  const locale = useSelector(selectLocale);
+  const plans = useSelector(selectSelectPlan);
+  const addOns = useSelector(selectAddOns);
+  const [planPrice, setPlanPrice] = useState(0);
   const [confirm, setConfirm] = useState(false);
-  const plan = { title: 'Arcade', price: 9 };
-  const addOns = [
-    { title: 'Online service', price: 1 },
-    { title: 'Larger storage', price: 2 },
-    { title: 'Customizable profile', price: 2 },
-  ];
-  const total = countTotalPrice(plan.price, addOns);
+  const total = countTotalPrice(planPrice, addOns);
+
+  useEffect(() => {
+    if (locale === 'en') {
+      if (plans.tahunan) {
+        setPlanPrice(plans.price_dolar_yearly);
+      } else {
+        setPlanPrice(plans.price_dolar_monthly);
+      }
+    }
+    if (locale === 'id') {
+      if (plans.tahunan) {
+        setPlanPrice(plans.price_rupiah_yearly);
+      } else {
+        setPlanPrice(plans.price_rupiah_monthly);
+      }
+    }
+  }, [addOns, plans]);
   const handleBack = () => {
     dispatch(setStepBack());
   };
@@ -42,8 +56,8 @@ const CountPayment = () => {
         <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <Box>
-              <Typography component="p" color="hsl(213, 89%, 18%)" fontWeight="bold">
-                {plan.title} ({tahunan ? 'Monthly' : 'Yearly'})
+              <Typography component="p" color="hsl(213, 89%, 18%)" fontWeight="bold" textTransform="capitalize">
+                {plans.paket} ({plans.tahunan ? 'Yearly' : 'Monthly'})
               </Typography>
               <Typography
                 component="a"
@@ -56,17 +70,17 @@ const CountPayment = () => {
               </Typography>
             </Box>
             <Typography component="p" color="hsl(213, 89%, 18%)" fontWeight="bold">
-              ${plan.price}/{tahunan ? 'mo' : 'yr'}
+              ${planPrice}/{plans.tahunan ? 'yr' : 'mo'}
             </Typography>
           </Box>
           <Divider />
           {addOns.map((item) => (
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <Typography component="p" color="gray">
-                {item.title}
+                {item.addons}
               </Typography>
               <Typography component="p" color="hsl(213, 89%, 18%)">
-                +${item.price}/{tahunan ? 'mo' : 'yr'}
+                {item.price}/{plans.tahunan ? 'yr' : 'mo'}
               </Typography>
             </Box>
           ))}
@@ -82,10 +96,10 @@ const CountPayment = () => {
         }}
       >
         <Typography component="p" color="gray">
-          Total (per {tahunan ? 'month' : 'year'})
+          Total (per {plans.tahunan ? 'year' : 'month'})
         </Typography>
         <Typography component="p" color="hsl(243, 73%, 58%)" fontWeight="bold">
-          +${total}/{tahunan ? 'mo' : 'yr'}
+          +${total}/{plans.tahunan ? 'yr' : 'mo'}
         </Typography>
       </Box>
       <div className={classes.button}>
