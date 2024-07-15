@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { injectIntl } from 'react-intl';
-import { Skeleton } from '@mui/material';
+import { Grid, Skeleton } from '@mui/material';
 
 import { selectInfo, selectLoading, selectStep } from '@containers/App/selectors';
 
@@ -42,8 +42,14 @@ const Home = ({ loading, step, info }) => {
   }
   return (
     <div className={classes.wrapper}>
-      <Sidebar />
-      <div>{bodyValue}</div>
+      <Grid container spacing={6}>
+        <Grid item xs={12} md={4}>
+          <Sidebar />
+        </Grid>
+        <Grid item xs={12} md={7}>
+          <div>{bodyValue}</div>
+        </Grid>
+      </Grid>
     </div>
   );
 };

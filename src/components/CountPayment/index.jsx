@@ -17,7 +17,6 @@ import classes from './style.module.scss';
 const CountPayment = ({ intl: { formatMessage }, addOns, plans, locale }) => {
   const dispatch = useDispatch();
   const [planPrice, setPlanPrice] = useState(0);
-  const [payment, setPayment] = useState('');
   const [confirm, setConfirm] = useState(false);
   const total = countTotalPrice(planPrice, addOns);
 
@@ -25,10 +24,8 @@ const CountPayment = ({ intl: { formatMessage }, addOns, plans, locale }) => {
     if (locale === 'en') {
       if (plans.tahunan) {
         setPlanPrice(plans.price_dolar_yearly);
-        setPayment('year');
       } else {
         setPlanPrice(plans.price_dolar_monthly);
-        setPayment('month');
       }
     }
     if (locale === 'id') {
@@ -58,7 +55,7 @@ const CountPayment = ({ intl: { formatMessage }, addOns, plans, locale }) => {
           paddingY: '1rem',
           backgroundColor: 'hsl(217, 100%, 97%)',
           boxShadow: 'none',
-          width: '500px',
+          width: '100%',
         }}
       >
         <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -114,7 +111,7 @@ const CountPayment = ({ intl: { formatMessage }, addOns, plans, locale }) => {
           justifyContent: 'space-between',
           alignItems: 'center',
           marginTop: '0.5rem',
-          padding: '0 1rem',
+          width: '100%',
         }}
       >
         <Typography component="p" color="gray">
