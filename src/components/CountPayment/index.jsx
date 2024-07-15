@@ -9,6 +9,8 @@ import ButtonStep from '@components/Button';
 import { useEffect, useState } from 'react';
 
 import Feedback from '@components/Feedback';
+import { setSidebarStep, setStepBack, updateAddOns } from '@containers/App/actions';
+import { selectAddOns, selectLocale, selectSelectPlan } from '@containers/App/selectors';
 import { countTotalPrice } from '@utils/countTotalPrice';
 
 import classes from './style.module.scss';
@@ -38,6 +40,9 @@ const CountPayment = ({ intl: { formatMessage }, addOns, plans, locale }) => {
     }
   }, [addOns, plans, locale]);
 
+  useEffect(() => {
+    dispatch(updateAddOns(plans.tahunan));
+  }, [dispatch, plans.tahunan]);
   const handleBack = () => {
     dispatch(setStepBack());
   };
