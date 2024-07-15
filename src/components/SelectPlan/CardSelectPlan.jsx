@@ -1,13 +1,12 @@
 import { Alert, Box, styled, Switch } from '@mui/material';
 import PropTypes from 'prop-types';
-// import iconArcade from '@static/images/en.png';
 import ButtonStep from '@components/Button';
 import { injectIntl } from 'react-intl';
 import { selectSelectPlan } from '@containers/App/selectors';
 import { createStructuredSelector } from 'reselect';
 import { connect, useDispatch } from 'react-redux';
 import { updateYearlySelectPlan, setPackageSelectPlan, setStepBack, setStepNext } from '@containers/App/actions';
-import { useState } from 'react';
+import { priceHelper } from '@utils/priceHelper';
 import classes from './csp.module.scss';
 
 const CardSelectPlan = ({ intl: { formatMessage }, selectPlan }) => {
@@ -143,8 +142,8 @@ const CardSelectPlan = ({ intl: { formatMessage }, selectPlan }) => {
             <h3>{formatMessage({ id: 'app_plan_arcade' })}</h3>
             <span className={classes.price}>
               {selectPlan.tahunan
-                ? formatMessage({ id: 'app_arcade_price_yearly' })
-                : formatMessage({ id: 'app_arcade_price' })}
+                ? formatMessage({ id: 'app_arcade_price_yearly' }, { price: priceHelper('arcade') * 10 })
+                : formatMessage({ id: 'app_arcade_price' }, { price: priceHelper('arcade') })}
             </span>
             {selectPlan.tahunan && <span className={classes.free}>{formatMessage({ id: 'app_2months' })}</span>}
           </Box>
@@ -162,8 +161,8 @@ const CardSelectPlan = ({ intl: { formatMessage }, selectPlan }) => {
             <h3>{formatMessage({ id: 'app_plan_advanced' })}</h3>
             <span className={classes.price}>
               {selectPlan.tahunan
-                ? formatMessage({ id: 'app_advanced_price_yearly' })
-                : formatMessage({ id: 'app_advanced_price' })}
+                ? formatMessage({ id: 'app_advanced_price_yearly' }, { price: priceHelper('advanced') * 10 })
+                : formatMessage({ id: 'app_advanced_price' }, { price: priceHelper('advanced') })}
             </span>
             {selectPlan.tahunan && <span className={classes.free}>{formatMessage({ id: 'app_2months' })}</span>}
           </Box>
@@ -181,8 +180,8 @@ const CardSelectPlan = ({ intl: { formatMessage }, selectPlan }) => {
             <h3>{formatMessage({ id: 'app_plan_pro' })}</h3>
             <span className={classes.price}>
               {selectPlan.tahunan
-                ? formatMessage({ id: 'app_pro_price_yearly' })
-                : formatMessage({ id: 'app_pro_price' })}
+                ? formatMessage({ id: 'app_pro_price_yearly' }, { price: priceHelper('pro') * 10 })
+                : formatMessage({ id: 'app_pro_price' }, { price: priceHelper('pro') })}
             </span>
             {selectPlan.tahunan && <span className={classes.free}>{formatMessage({ id: 'app_2months' })}</span>}
           </Box>

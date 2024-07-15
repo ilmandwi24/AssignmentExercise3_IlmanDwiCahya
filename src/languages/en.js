@@ -47,12 +47,12 @@ export default {
   app_plan_pro: 'Pro',
   app_plan_monthly: 'Monthly',
   app_plan_yearly: 'Yearly',
-  app_arcade_price: '$9/mo',
-  app_advanced_price: '$12/mo',
-  app_pro_price: '$15/mo',
-  app_arcade_price_yearly: '$90/yr',
-  app_advanced_price_yearly: '$120/yr',
-  app_pro_price_yearly: '$150/yr',
+  app_arcade_price: '$ {price}/mo',
+  app_advanced_price: '$ {price}/mo',
+  app_pro_price: '$ {price}/mo',
+  app_arcade_price_yearly: '$ {price}/yr',
+  app_advanced_price_yearly: '$ {price}/yr',
+  app_pro_price_yearly: '$ {price}/yr',
   app_2months: '2 months free',
 
   // Pick Add-ons Component
@@ -84,6 +84,7 @@ export default {
   // Validation
   this_field_is_required: 'This field is required',
   email_validation: 'Email must be a valid',
+  phone_validation_number: 'Phone number must be a number',
   phone_validation: 'Phone number must be at least 12',
   phone_validation_max: 'Phone number must be at most 15',
 
