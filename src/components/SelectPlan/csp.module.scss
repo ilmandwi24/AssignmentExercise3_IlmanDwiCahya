@@ -86,7 +86,7 @@
 }
 
 // Tampilan Desktop min-width 1440px
-@include apply-at-xxl-size {
+@include apply-at-xl-size {
   .container {
     min-width: 450px;
     // flex-direction: row;
@@ -114,7 +114,7 @@
     }
   }
 }
-.button{
+.button {
   @include directionX;
   justify-content: space-between;
   align-items: center;

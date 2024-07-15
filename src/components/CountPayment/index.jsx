@@ -10,12 +10,14 @@ import { useEffect, useState } from 'react';
 
 import Feedback from '@components/Feedback';
 import { countTotalPrice } from '@utils/countTotalPrice';
+import Header from '@components/Header';
 
 import classes from './style.module.scss';
 
 const CountPayment = ({ intl: { formatMessage }, addOns, plans, locale }) => {
   const dispatch = useDispatch();
   const [planPrice, setPlanPrice] = useState(0);
+  const [payment, setPayment] = useState('');
   const [confirm, setConfirm] = useState(false);
   const total = countTotalPrice(planPrice, addOns);
 
@@ -23,8 +25,10 @@ const CountPayment = ({ intl: { formatMessage }, addOns, plans, locale }) => {
     if (locale === 'en') {
       if (plans.tahunan) {
         setPlanPrice(plans.price_dolar_yearly);
+        setPayment('year');
       } else {
         setPlanPrice(plans.price_dolar_monthly);
+        setPayment('month');
       }
     }
     if (locale === 'id') {
@@ -45,6 +49,10 @@ const CountPayment = ({ intl: { formatMessage }, addOns, plans, locale }) => {
   if (confirm) return <Feedback />;
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+      <Header
+        title={formatMessage({ id: 'app_summary' })}
+        description={formatMessage({ id: 'app_summary_description' })}
+      />
       <Card
         sx={{
           paddingY: '1rem',
