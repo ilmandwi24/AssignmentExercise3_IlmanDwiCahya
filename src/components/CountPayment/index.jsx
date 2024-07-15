@@ -2,15 +2,13 @@ import PropTypes from 'prop-types';
 import { connect, useDispatch } from 'react-redux';
 import { injectIntl } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
-import { setSidebarStep, setStepBack } from '@containers/App/actions';
+import { setSidebarStep, setStepBack, updateAddOns } from '@containers/App/actions';
 import { selectAddOns, selectLocale, selectSelectPlan } from '@containers/App/selectors';
 import { Box, Card, CardContent, Divider, Typography } from '@mui/material';
 import ButtonStep from '@components/Button';
 import { useEffect, useState } from 'react';
 
 import Feedback from '@components/Feedback';
-import { setSidebarStep, setStepBack, updateAddOns } from '@containers/App/actions';
-import { selectAddOns, selectLocale, selectSelectPlan } from '@containers/App/selectors';
 import { countTotalPrice } from '@utils/countTotalPrice';
 
 import classes from './style.module.scss';
@@ -20,8 +18,6 @@ const CountPayment = ({ intl: { formatMessage }, addOns, plans, locale }) => {
   const [planPrice, setPlanPrice] = useState(0);
   const [confirm, setConfirm] = useState(false);
   const total = countTotalPrice(planPrice, addOns);
-
-  console.log(plans);
 
   useEffect(() => {
     if (locale === 'en') {
