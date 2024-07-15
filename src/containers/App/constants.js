@@ -11,3 +11,4 @@ export const SET_STEPBACK = 'App/SET_STEPBACK';
 export const SET_INFO = 'App/SET_INFO';
 export const SET_ADDONS = 'App/SET_ADDONS';
 export const SET_SIDEBARSTEP = 'App/SET_SIDEBARSTEP';
+export const SET_UPDATEADDONS = 'App/SET_UPDATEADDONS';

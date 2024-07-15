@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import Feedback from '@components/Feedback';
-import { setSidebarStep, setStepBack } from '@containers/App/actions';
+import { setSidebarStep, setStepBack, updateAddOns } from '@containers/App/actions';
 import { selectAddOns, selectLocale, selectSelectPlan } from '@containers/App/selectors';
 import { countTotalPrice } from '@utils/countTotalPrice';
 
@@ -35,6 +35,10 @@ const CountPayment = () => {
       }
     }
   }, [addOns, plans]);
+
+  useEffect(() => {
+    dispatch(updateAddOns(plans.tahunan));
+  }, [dispatch, plans.tahunan]);
   const handleBack = () => {
     dispatch(setStepBack());
   };
