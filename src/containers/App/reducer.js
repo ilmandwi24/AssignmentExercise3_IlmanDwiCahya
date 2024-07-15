@@ -13,6 +13,7 @@ import {
   SET_PACKAGE_SELECT_PLAN,
   SET_ADDONS,
   SET_SIDEBARSTEP,
+  SET_RESETADDONS,
 } from '@containers/App/constants';
 
 export const initialState = {
@@ -86,8 +87,8 @@ const appReducer = (state = initialState, action) =>
         draft.info = action.info;
         break;
       case SET_ADDONS:
-        if (action.isAdding !== false) {
-          draft.addOns.push({ addons: action.addons, price: action.price });
+        if (action.isAdding) {
+          draft.addOns.push({ id: action.id, addons: action.addons, price: action.price });
         } else {
           draft.addOns = draft.addOns.filter((item) => item.addons !== action.addons);
         }
@@ -95,6 +96,10 @@ const appReducer = (state = initialState, action) =>
       case SET_SIDEBARSTEP:
         draft.step = action.step;
         break;
+      case SET_RESETADDONS:
+        if (draft.step === 2) {
+          draft.addOns = [];
+        }
     }
   });
 

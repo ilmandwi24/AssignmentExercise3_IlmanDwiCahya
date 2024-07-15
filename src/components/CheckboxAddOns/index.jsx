@@ -7,13 +7,13 @@ import { selectAddOns } from '@containers/App/selectors';
 import { setAddOns } from '@containers/App/actions';
 import classes from './style.module.scss';
 
-const CheckboxAddOns = ({ addons, description, price, addOns, priceText }) => {
+const CheckboxAddOns = ({ addons, description, price, addOns, priceText, id }) => {
   const dispatch = useDispatch();
 
   const isChecked = addOns.some((addOn) => addOn.addons === addons);
 
   const handleCheckboxChange = () => {
-    dispatch(setAddOns(addons, price, !isChecked));
+    dispatch(setAddOns(id, addons, price, !isChecked));
   };
   return (
     <div
@@ -44,6 +44,7 @@ CheckboxAddOns.propTypes = {
   price: PropTypes.number.isRequired,
   addOns: PropTypes.array.isRequired,
   priceText: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
 };
 const mapStateToProps = createStructuredSelector({
   addOns: selectAddOns,

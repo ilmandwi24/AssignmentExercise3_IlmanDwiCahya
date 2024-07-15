@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, connect } from 'react-redux';
 import { setStepBack, setStepNext } from '@containers/App/actions';
 import { createStructuredSelector } from 'reselect';
-import { selectAddOns, selectSelectPlan } from '@containers/App/selectors';
+import { selectAddOns, selectSelectPlan, selectStep } from '@containers/App/selectors';
 import { FormattedMessage, injectIntl } from 'react-intl';
 
 import CheckboxAddOns from '@components/CheckboxAddOns';
@@ -33,9 +33,10 @@ const AddOns = ({ addOns, selectPlan, intl: { formatMessage } }) => {
           <FormattedMessage id="app_pick_addons_description" />
         </p>
         <CheckboxAddOns
+          id="add_ons_online_service"
           addons={formatMessage({ id: 'add_ons_online_service' })}
           description={formatMessage({ id: 'add_ons_online_service_description' })}
-          price={selectPlan.tahunan ? 12 : 1}
+          price={selectPlan?.tahunan ? 12 : 1}
           priceText={
             selectPlan.tahunan
               ? formatMessage({ id: 'online_service_price_monthly' }, { price: 12 })
@@ -43,6 +44,7 @@ const AddOns = ({ addOns, selectPlan, intl: { formatMessage } }) => {
           }
         />
         <CheckboxAddOns
+          id="add_ons_large_storage"
           addons={formatMessage({ id: 'add_ons_large_storage' })}
           description={formatMessage({ id: 'add_ons_large_storage_description' })}
           price={selectPlan.tahunan ? 24 : 2}
@@ -53,6 +55,7 @@ const AddOns = ({ addOns, selectPlan, intl: { formatMessage } }) => {
           }
         />
         <CheckboxAddOns
+          id="add_ons_customizable_profile"
           addons={formatMessage({ id: 'add_ons_customizable_profile' })}
           description={formatMessage({ id: 'add_ons_customizable_profile_description' })}
           price={selectPlan.tahunan ? 24 : 2}
@@ -79,5 +82,6 @@ AddOns.propTypes = {
 const mapStateToProps = createStructuredSelector({
   addOns: selectAddOns,
   selectPlan: selectSelectPlan,
+  step: selectStep,
 });
 export default injectIntl(connect(mapStateToProps)(AddOns));

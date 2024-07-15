@@ -1,3 +1,4 @@
+import { FormattedMessage } from 'react-intl';
 import { Box, Typography } from '@mui/material';
 
 const Feedback = () => (
@@ -16,11 +17,10 @@ const Feedback = () => (
   >
     <img src="./src/static/images/icon-thank-you.svg" alt="checklist" width={100} style={{ alignSelf: 'center' }} />
     <Typography variant="h5" fontWeight="bold" color="hsl(213, 89%, 18%)">
-      Thank you!
+      <FormattedMessage id="app_thank_payment" />
     </Typography>
     <Typography color="gray">
-      Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please
-      feel free to email us at support@loremgaming.com.
+      <FormattedMessage id="app_thank_description" values={{ email: 'jH1rA@example.com' }} />
     </Typography>
   </Box>
 );

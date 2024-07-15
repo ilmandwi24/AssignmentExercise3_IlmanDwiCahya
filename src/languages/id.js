@@ -14,6 +14,13 @@ export default {
   button_step: 'Berikutnya',
   button_confirm: 'Konfirmasi',
   button_nextstep: 'Langkah Selanjutnya',
+  button_change: 'Ubah',
+
+  // Plan
+  app_month: 'bulan',
+  app_year: 'tahun',
+  app_mo: 'bln',
+  app_yr: 'thn',
 
   // Langkah
   app_step_1: 'Langkah 1',
@@ -68,9 +75,10 @@ export default {
 
   // Komponen Ringkasan
   app_summary_description: 'Periksa dengan teliti sebelum melakukan konfirmasi.',
-  selected_plan: '{plan} ({Pembayaran})',
+  selected_plan: '{plan} ({Payment})',
+  payment_info: '$ {payment} / {package}',
   selected_addons: '{tambahan}',
-  total_payment: 'Total (per {pembayaran})',
+  total_payment: 'Total (per {payment})',
 
   app_thank_payment: 'Terima kasih!',
   app_thank_description:
