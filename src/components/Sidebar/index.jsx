@@ -46,11 +46,20 @@ const Sidebar = ({ step }) => {
         <Stepper orientation="vertical" activeStep={step - 1}>
           {steps.map((sidebarStep, index) => (
             <Step key={sidebarStep.label}>
-              <StepLabel>
-                <Button onClick={() => handleStep(index + 1)}>{sidebarStep.label}</Button>
+              <StepLabel
+                StepIconProps={{
+                  classes: {
+                    active: classes.icon,
+                    text: classes.text,
+                  },
+                }}
+              >
+                <Button onClick={() => handleStep(index + 1)} sx={{ color: 'white' }}>
+                  {sidebarStep.label}
+                </Button>
               </StepLabel>
               <StepContent>
-                <Typography>
+                <Typography sx={{ color: 'white' }}>
                   <FormattedMessage id={sidebarStep.description} />
                 </Typography>
               </StepContent>
