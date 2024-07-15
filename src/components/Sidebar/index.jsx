@@ -59,7 +59,7 @@ const Sidebar = ({ step }) => {
                 </Button>
               </StepLabel>
               <StepContent>
-                <Typography sx={{ color: 'white' }}>
+                <Typography sx={{ color: 'white', fontSize: '16px' }}>
                   <FormattedMessage id={sidebarStep.description} />
                 </Typography>
               </StepContent>

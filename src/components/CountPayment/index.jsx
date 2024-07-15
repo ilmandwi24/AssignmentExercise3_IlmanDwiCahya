@@ -50,7 +50,6 @@ const CountPayment = () => {
           backgroundColor: 'hsl(217, 100%, 97%)',
           boxShadow: 'none',
           width: '500px',
-          marginTop: '1rem',
         }}
       >
         <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>

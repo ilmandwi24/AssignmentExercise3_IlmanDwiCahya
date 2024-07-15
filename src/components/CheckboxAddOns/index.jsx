@@ -1,32 +1,31 @@
 import PropTypes from 'prop-types';
 import { Checkbox } from '@mui/material';
 
-import { useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectAddOns } from '@containers/App/selectors';
 import { setAddOns } from '@containers/App/actions';
 import classes from './style.module.scss';
 
-const CheckboxAddOns = ({ addons, description, price, addOns }) => {
+const CheckboxAddOns = ({ addons, description, price, addOns, priceText }) => {
   const dispatch = useDispatch();
-  const [checked, setChecked] = useState(false);
-  console.log(addOns);
+
+  const isChecked = addOns.some((addOn) => addOn.addons === addons);
 
   const handleCheckboxChange = () => {
-    setChecked((prevState) => {
-      const newState = !prevState;
-      dispatch(setAddOns(addons, price, newState));
-      return newState;
-    });
+    dispatch(setAddOns(addons, price, !isChecked));
   };
   return (
     <div
       className={classes.checkboxaddons}
-      style={checked ? { backgroundColor: 'hsl(229, 24%, 87%)' } : { backgroundColor: 'white' }}
+      style={
+        isChecked
+          ? { backgroundColor: 'hsl(229, 24%, 87%)', border: '2px solid hsl(243, 100%, 62%)' }
+          : { backgroundColor: 'white', border: '2px solid hsl(231, 11%, 63%)' }
+      }
     >
       <Checkbox
-        checked={checked}
+        checked={isChecked}
         onChange={handleCheckboxChange}
         sx={{ '&.Mui-checked': { color: 'hsl(243, 100%, 62%)' } }}
       />
@@ -34,7 +33,7 @@ const CheckboxAddOns = ({ addons, description, price, addOns }) => {
         <h4>{addons}</h4>
         <p>{description}</p>
       </div>
-      <span>{price}</span>
+      <span>{priceText}</span>
     </div>
   );
 };
@@ -42,8 +41,9 @@ const CheckboxAddOns = ({ addons, description, price, addOns }) => {
 CheckboxAddOns.propTypes = {
   addons: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
   addOns: PropTypes.array.isRequired,
+  priceText: PropTypes.string.isRequired,
 };
 const mapStateToProps = createStructuredSelector({
   addOns: selectAddOns,

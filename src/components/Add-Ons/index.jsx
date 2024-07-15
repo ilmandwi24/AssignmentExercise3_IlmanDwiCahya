@@ -1,14 +1,16 @@
-import CheckboxAddOns from '@components/CheckboxAddOns';
 import PropTypes from 'prop-types';
-
-import ButtonStep from '@components/Button';
 import { useDispatch, connect } from 'react-redux';
 import { setStepBack, setStepNext } from '@containers/App/actions';
 import { createStructuredSelector } from 'reselect';
-import { selectAddOns } from '@containers/App/selectors';
+import { selectAddOns, selectSelectPlan } from '@containers/App/selectors';
+import { FormattedMessage, injectIntl } from 'react-intl';
+
+import CheckboxAddOns from '@components/CheckboxAddOns';
+import ButtonStep from '@components/Button';
+
 import classes from './style.module.scss';
 
-const AddOns = ({ addOns }) => {
+const AddOns = ({ addOns, selectPlan, intl: { formatMessage } }) => {
   const dispatch = useDispatch();
 
   const handleBack = () => {
@@ -16,7 +18,6 @@ const AddOns = ({ addOns }) => {
   };
   const handleNext = () => {
     if (addOns.length === 0) {
-      alert('Please select add-ons');
       return;
     }
     dispatch(setStepNext());
@@ -24,11 +25,43 @@ const AddOns = ({ addOns }) => {
   return (
     <>
       <div className={classes.addons}>
-        <h2>Pick add-ons</h2>
-        <p>Add-ons help enhance your gaming experience.</p>
-        <CheckboxAddOns addons="Online Service" description="Access to multiplayer games" price="+$1/mo" />
-        <CheckboxAddOns addons="Larger storage" description="Extra 1TB of cloud save" price="+$2/mo" />
-        <CheckboxAddOns addons="Customizable profile" description="Custom theme on your profile" price="+$2/mo" />
+        <h2>
+          <FormattedMessage id="app_pick_addons" />
+        </h2>
+        <p>
+          {' '}
+          <FormattedMessage id="app_pick_addons_description" />
+        </p>
+        <CheckboxAddOns
+          addons={formatMessage({ id: 'add_ons_online_service' })}
+          description={formatMessage({ id: 'add_ons_online_service_description' })}
+          price={selectPlan.tahunan ? 12 : 1}
+          priceText={
+            selectPlan.tahunan
+              ? formatMessage({ id: 'online_service_price_monthly' }, { price: 12 })
+              : formatMessage({ id: 'online_service_price' }, { price: 1 })
+          }
+        />
+        <CheckboxAddOns
+          addons={formatMessage({ id: 'add_ons_large_storage' })}
+          description={formatMessage({ id: 'add_ons_large_storage_description' })}
+          price={selectPlan.tahunan ? 24 : 2}
+          priceText={
+            selectPlan.tahunan
+              ? formatMessage({ id: 'large_storage_price_monthly' }, { price: 24 })
+              : formatMessage({ id: 'large_storage_price' }, { price: 2 })
+          }
+        />
+        <CheckboxAddOns
+          addons={formatMessage({ id: 'add_ons_customizable_profile' })}
+          description={formatMessage({ id: 'add_ons_customizable_profile_description' })}
+          price={selectPlan.tahunan ? 24 : 2}
+          priceText={
+            selectPlan.tahunan
+              ? formatMessage({ id: 'customizable_profile_price_monthly' }, { price: 24 })
+              : formatMessage({ id: 'costomizable_profile_price' }, { price: 2 })
+          }
+        />
       </div>
       <div className={classes.button}>
         <ButtonStep message="button_goback" click={handleBack} />
@@ -40,8 +73,11 @@ const AddOns = ({ addOns }) => {
 
 AddOns.propTypes = {
   addOns: PropTypes.array.isRequired,
+  selectPlan: PropTypes.object,
+  intl: PropTypes.object,
 };
 const mapStateToProps = createStructuredSelector({
   addOns: selectAddOns,
+  selectPlan: selectSelectPlan,
 });
-export default connect(mapStateToProps)(AddOns);
+export default injectIntl(connect(mapStateToProps)(AddOns));
