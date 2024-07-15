@@ -14,6 +14,13 @@ export default {
   button_step: 'Next',
   button_confirm: 'Confirm',
   button_nextstep: 'Next Step',
+  button_change: 'Change',
+
+  // Plan
+  app_month: 'month',
+  app_year: 'year',
+  app_mo: 'mo',
+  app_yr: 'yr',
 
   // Step
   app_step_1: 'Step 1',
@@ -74,6 +81,7 @@ export default {
   // Summary Component
   app_summary_description: 'Double-check everything looks OK before confirming.',
   selected_plan: '{plan} ({Payment})',
+  payment_info: '$ {payment} / {package}',
   selected_addons: '{addons}',
   total_payment: 'Total (per {payment})',
   total_payment_monthly: '+$ {price}/mo',

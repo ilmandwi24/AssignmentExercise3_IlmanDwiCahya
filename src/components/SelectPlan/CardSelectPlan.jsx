@@ -5,7 +5,13 @@ import { injectIntl } from 'react-intl';
 import { selectSelectPlan } from '@containers/App/selectors';
 import { createStructuredSelector } from 'reselect';
 import { connect, useDispatch } from 'react-redux';
-import { updateYearlySelectPlan, setPackageSelectPlan, setStepBack, setStepNext } from '@containers/App/actions';
+import {
+  updateYearlySelectPlan,
+  setPackageSelectPlan,
+  setStepBack,
+  setStepNext,
+  setResetAddOns,
+} from '@containers/App/actions';
 import { useState } from 'react';
 import { priceHelper } from '@utils/priceHelper';
 import classes from './csp.module.scss';
@@ -121,6 +127,7 @@ const CardSelectPlan = ({ intl: { formatMessage }, selectPlan }) => {
   };
   const handleNext = () => {
     if (selectPlan.paket === '') return setIsError(true);
+    dispatch(setResetAddOns());
     dispatch(setStepNext());
   };
   return (
