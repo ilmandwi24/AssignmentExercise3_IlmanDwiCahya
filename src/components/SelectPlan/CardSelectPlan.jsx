@@ -1,4 +1,4 @@
-import { Box, styled, Switch } from '@mui/material';
+import { Alert, Box, styled, Switch } from '@mui/material';
 import PropTypes from 'prop-types';
 import ButtonStep from '@components/Button';
 import { injectIntl } from 'react-intl';
@@ -10,7 +10,7 @@ import { priceHelper } from '@utils/priceHelper';
 import classes from './csp.module.scss';
 
 const CardSelectPlan = ({ intl: { formatMessage }, selectPlan }) => {
-  // const [paket, setPaket] = useState(0);
+  const [isError, setIsError] = useState(false);
 
   const dispatch = useDispatch();
   const CustomSwitch = styled((props) => <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />)(
@@ -62,6 +62,7 @@ const CardSelectPlan = ({ intl: { formatMessage }, selectPlan }) => {
   );
 
   const setPackage = (paket) => {
+    setIsError(false);
     switch (paket) {
       case 'arcade':
         {
@@ -118,6 +119,7 @@ const CardSelectPlan = ({ intl: { formatMessage }, selectPlan }) => {
     dispatch(setStepBack());
   };
   const handleNext = () => {
+    if (selectPlan.paket === '') return setIsError(true);
     dispatch(setStepNext());
   };
   return (
@@ -187,7 +189,7 @@ const CardSelectPlan = ({ intl: { formatMessage }, selectPlan }) => {
       </Box>
 
       <Box className={classes.switch}>
-        {/* TODO:: SWITCH SELECT PLAN CHANGED */}
+        {/* TODO:: SWITCH SELECT   PLAN CHANGED */}
         {formatMessage({ id: 'app_plan_monthly' })}
         <CustomSwitch
           checked={selectPlan.tahunan}
@@ -202,6 +204,7 @@ const CardSelectPlan = ({ intl: { formatMessage }, selectPlan }) => {
         />
         {formatMessage({ id: 'app_plan_yearly' })}
       </Box>
+      <Box>{isError && <Alert severity="error">Paket belum dipilih</Alert>}</Box>
       <div className={classes.button}>
         <ButtonStep message={formatMessage({ id: 'button_goback' })} click={handleBack} />
         <ButtonStep message={formatMessage({ id: 'button_nextstep' })} typevariant="contained" click={handleNext} />

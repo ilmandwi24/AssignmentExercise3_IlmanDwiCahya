@@ -64,12 +64,12 @@ export default {
   add_ons_large_storage_description: 'Extra 1TB of cloud save',
   add_ons_customizable_profile: 'Customizable profile',
   add_ons_customizable_profile_description: 'Custom theme on your profile',
-  online_service_price: '$1/mo',
-  large_storage_price: '$2/mo',
-  costumizable_profile_price: '$2/mo',
-  online_service_price_monthly: '$10/yr',
-  large_storage_price_monthly: '$20/yr',
-  customizable_profile_price_monthly: '$20/yr',
+  online_service_price: '$ {price}/mo',
+  large_storage_price: '$ {price}/mo',
+  costomizable_profile_price: '$ {price}/mo',
+  online_service_price_monthly: '$ {price}/yr',
+  large_storage_price_monthly: '$ {price}/yr',
+  customizable_profile_price_monthly: '$ {price}/yr',
 
   // Summary Component
   app_summary_description: 'Double-check everything looks OK before confirming.',

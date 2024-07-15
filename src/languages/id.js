@@ -59,12 +59,12 @@ export default {
   add_ons_large_storage_description: 'Tambahan 1TB penyimpanan cloud',
   add_ons_customizable_profile: 'Profil yang dapat disesuaikan',
   add_ons_customizable_profile_description: 'Tema kustom untuk profil Anda',
-  online_service_price: 'Rp1/bln',
-  large_storage_price: 'Rp2/bln',
-  costumizable_profile_price: 'Rp2/bln',
-  online_service_price_monthly: 'Rp10/thn',
-  large_storage_price_monthly: 'Rp20/thn',
-  customizable_profile_price_monthly: 'Rp20/thn',
+  online_service_price: '$ {price}/bln',
+  large_storage_price: '$ {price}/bln',
+  costomizable_profile_price: '$ {price}/bln',
+  online_service_price_monthly: '$ {price}/thn',
+  large_storage_price_monthly: '$ {price}/thn',
+  customizable_profile_price_monthly: '$ {price}/thn',
 
   // Komponen Ringkasan
   app_summary_description: 'Periksa dengan teliti sebelum melakukan konfirmasi.',
