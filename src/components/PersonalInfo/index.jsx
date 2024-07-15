@@ -1,13 +1,13 @@
-import { InputLabel, TextField, Typography } from '@mui/material';
-import { FormattedMessage, injectIntl } from 'react-intl';
-import ButtonStep from '@components/Button';
 import PropTypes from 'prop-types';
-
-import { Controller, useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
+import { Controller, useForm } from 'react-hook-form';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import { setInfo, setStepNext } from '@containers/App/actions';
+
+import { InputLabel, TextField, Typography } from '@mui/material';
+import ButtonStep from '@components/Button';
 import classes from './style.module.scss';
 
 const PersonalInfo = ({ intl: { formatMessage }, info }) => {
@@ -19,10 +19,11 @@ const PersonalInfo = ({ intl: { formatMessage }, info }) => {
       email: yup
         .string()
         .email(formatMessage({ id: 'email_validation' }))
+        .matches(/^(?!.*@[^,.]*,)[^@]+@[^@]+\.[^@]+$/, formatMessage({ id: 'email_validation' }))
         .required(formatMessage({ id: 'this_field_is_required' })),
       phone: yup
-        .number('Phone number must be a number')
-        .typeError('Phone number must be a number')
+        .number(formatMessage({ id: 'phone_validation_number' }))
+        .typeError(formatMessage({ id: 'phone_validation_number' }))
         .min(10, formatMessage({ id: 'phone_validation' }))
         .required(formatMessage({ id: 'this_field_is_required' })),
     })
@@ -130,7 +131,7 @@ const PersonalInfo = ({ intl: { formatMessage }, info }) => {
             )}
             name="phone"
             control={control}
-            defaultValue={`+62${info?.phone}`}
+            defaultValue={info?.phone ? `+62${info?.phone}` : ''}
           />
 
           <div className={classes.personalButton}>

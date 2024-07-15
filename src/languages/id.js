@@ -42,12 +42,12 @@ export default {
   app_plan_pro: 'Pro',
   app_plan_monthly: 'Bulanan',
   app_plan_yearly: 'Tahunan',
-  app_arcade_price: 'Rp 126.000/bln',
-  app_advanced_price: 'Rp 168.000/bln',
-  app_pro_price: 'Rp 210.000/bln',
-  app_arcade_price_yearly: 'Rp 1.260.000/thn',
-  app_advanced_price_yearly: 'Rp 1.680.000/thn',
-  app_pro_price_yearly: 'Rp 2.100.000/thn',
+  app_arcade_price: '$ {price}/bln',
+  app_advanced_price: '$ {price}/bln',
+  app_pro_price: '$ {price}/bln',
+  app_arcade_price_yearly: '$ {price}/thn',
+  app_advanced_price_yearly: '$ {price}/thn',
+  app_pro_price_yearly: '$ {price}/thn',
   app_2months: '2 bulan gratis',
 
   // Komponen Pilih Tambahan
@@ -79,6 +79,7 @@ export default {
   // Validasi
   this_field_is_required: 'Kolom ini wajib diisi',
   email_validation: 'Email harus valid',
+  phone_validation_number: 'Nomor telepon harus berupa angka',
   phone_validation: 'Nomor telepon minimal 12 karakter',
   phone_validation_max: 'Nomor telepon maksimal 15 karakter',
 
