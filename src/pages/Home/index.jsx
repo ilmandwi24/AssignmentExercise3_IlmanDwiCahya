@@ -42,14 +42,8 @@ const Home = ({ loading, step, info }) => {
   }
   return (
     <div className={classes.wrapper}>
-      <Grid container spacing={6}>
-        <Grid item xs={12} md={4}>
-          <Sidebar />
-        </Grid>
-        <Grid item xs={12} md={7}>
-          <div>{bodyValue}</div>
-        </Grid>
-      </Grid>
+      <Sidebar />
+      <div>{bodyValue}</div>
     </div>
   );
 };

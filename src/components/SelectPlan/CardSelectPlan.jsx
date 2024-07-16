@@ -131,93 +131,95 @@ const CardSelectPlan = ({ intl: { formatMessage }, selectPlan }) => {
     dispatch(setStepNext());
   };
   return (
-    <Box className={classes.container}>
-      <h1>{formatMessage({ id: 'app_select_your_plan' })}</h1>
-      <p>{formatMessage({ id: 'app_select_plan_description' })}</p>
-      {/* List package */}
-      <Box className={classes.listPlan}>
-        {/* paket 1 */}
-        <Box
-          className={`${classes.plan} ${selectPlan.paket === 'arcade' ? classes.active : ''}`}
-          onClick={() => setPackage('arcade')}
-        >
-          <Box className={classes.icon}>
-            <span>
-              <img src="src/static/images/icon-arcade.svg" alt="icon arcade" />
-            </span>
+    <>
+      <Box className={classes.container}>
+        <h1>{formatMessage({ id: 'app_select_your_plan' })}</h1>
+        <p>{formatMessage({ id: 'app_select_plan_description' })}</p>
+        {/* List package */}
+        <Box className={classes.listPlan}>
+          {/* paket 1 */}
+          <Box
+            className={`${classes.plan} ${selectPlan.paket === 'arcade' ? classes.active : ''}`}
+            onClick={() => setPackage('arcade')}
+          >
+            <Box className={classes.icon}>
+              <span>
+                <img src="src/static/images/icon-arcade.svg" alt="icon arcade" />
+              </span>
+            </Box>
+            <Box className={classes.desc}>
+              <h3>{formatMessage({ id: 'app_plan_arcade' })}</h3>
+              <span className={classes.price}>
+                {selectPlan.tahunan
+                  ? formatMessage({ id: 'app_arcade_price_yearly' }, { price: priceHelper('arcade') * 10 })
+                  : formatMessage({ id: 'app_arcade_price' }, { price: priceHelper('arcade') })}
+              </span>
+              {selectPlan.tahunan && <span className={classes.free}>{formatMessage({ id: 'app_2months' })}</span>}
+            </Box>
           </Box>
-          <Box className={classes.desc}>
-            <h3>{formatMessage({ id: 'app_plan_arcade' })}</h3>
-            <span className={classes.price}>
-              {selectPlan.tahunan
-                ? formatMessage({ id: 'app_arcade_price_yearly' }, { price: priceHelper('arcade') * 10 })
-                : formatMessage({ id: 'app_arcade_price' }, { price: priceHelper('arcade') })}
-            </span>
-            {selectPlan.tahunan && <span className={classes.free}>{formatMessage({ id: 'app_2months' })}</span>}
+          <Box
+            className={`${classes.plan} ${selectPlan.paket === 'advanced' ? classes.active : ''}`}
+            onClick={() => setPackage('advanced')}
+          >
+            <Box className={classes.icon}>
+              <span>
+                <img src="src/static/images/icon-advanced.svg" alt="icon arcade" />
+              </span>
+            </Box>
+            <Box className={classes.desc}>
+              <h3>{formatMessage({ id: 'app_plan_advanced' })}</h3>
+              <span className={classes.price}>
+                {selectPlan.tahunan
+                  ? formatMessage({ id: 'app_advanced_price_yearly' }, { price: priceHelper('advanced') * 10 })
+                  : formatMessage({ id: 'app_advanced_price' }, { price: priceHelper('advanced') })}
+              </span>
+              {selectPlan.tahunan && <span className={classes.free}>{formatMessage({ id: 'app_2months' })}</span>}
+            </Box>
+          </Box>
+          <Box
+            className={`${classes.plan} ${selectPlan.paket === 'pro' ? classes.active : ''}`}
+            onClick={() => setPackage('pro')}
+          >
+            <Box className={classes.icon}>
+              <span>
+                <img src="src/static/images/icon-pro.svg" alt="icon arcade" />
+              </span>
+            </Box>
+            <Box className={classes.desc}>
+              <h3>{formatMessage({ id: 'app_plan_pro' })}</h3>
+              <span className={classes.price}>
+                {selectPlan.tahunan
+                  ? formatMessage({ id: 'app_pro_price_yearly' }, { price: priceHelper('pro') * 10 })
+                  : formatMessage({ id: 'app_pro_price' }, { price: priceHelper('pro') })}
+              </span>
+              {selectPlan.tahunan && <span className={classes.free}>{formatMessage({ id: 'app_2months' })}</span>}
+            </Box>
           </Box>
         </Box>
-        <Box
-          className={`${classes.plan} ${selectPlan.paket === 'advanced' ? classes.active : ''}`}
-          onClick={() => setPackage('advanced')}
-        >
-          <Box className={classes.icon}>
-            <span>
-              <img src="src/static/images/icon-advanced.svg" alt="icon arcade" />
-            </span>
-          </Box>
-          <Box className={classes.desc}>
-            <h3>{formatMessage({ id: 'app_plan_advanced' })}</h3>
-            <span className={classes.price}>
-              {selectPlan.tahunan
-                ? formatMessage({ id: 'app_advanced_price_yearly' }, { price: priceHelper('advanced') * 10 })
-                : formatMessage({ id: 'app_advanced_price' }, { price: priceHelper('advanced') })}
-            </span>
-            {selectPlan.tahunan && <span className={classes.free}>{formatMessage({ id: 'app_2months' })}</span>}
-          </Box>
-        </Box>
-        <Box
-          className={`${classes.plan} ${selectPlan.paket === 'pro' ? classes.active : ''}`}
-          onClick={() => setPackage('pro')}
-        >
-          <Box className={classes.icon}>
-            <span>
-              <img src="src/static/images/icon-pro.svg" alt="icon arcade" />
-            </span>
-          </Box>
-          <Box className={classes.desc}>
-            <h3>{formatMessage({ id: 'app_plan_pro' })}</h3>
-            <span className={classes.price}>
-              {selectPlan.tahunan
-                ? formatMessage({ id: 'app_pro_price_yearly' }, { price: priceHelper('pro') * 10 })
-                : formatMessage({ id: 'app_pro_price' }, { price: priceHelper('pro') })}
-            </span>
-            {selectPlan.tahunan && <span className={classes.free}>{formatMessage({ id: 'app_2months' })}</span>}
-          </Box>
-        </Box>
-      </Box>
 
-      <Box className={classes.switch}>
-        {/* TODO:: SWITCH SELECT   PLAN CHANGED */}
-        {formatMessage({ id: 'app_plan_monthly' })}
-        <CustomSwitch
-          checked={selectPlan.tahunan}
-          onChange={() =>
-            dispatch(
-              updateYearlySelectPlan({
-                tahunan: !selectPlan.tahunan,
-                lang_biling: !selectPlan.tahunan ? 'app_plan_yearly' : 'app_plan_monthly',
-              })
-            )
-          }
-        />
-        {formatMessage({ id: 'app_plan_yearly' })}
+        <Box className={classes.switch}>
+          {/* TODO:: SWITCH SELECT   PLAN CHANGED */}
+          {formatMessage({ id: 'app_plan_monthly' })}
+          <CustomSwitch
+            checked={selectPlan.tahunan}
+            onChange={() =>
+              dispatch(
+                updateYearlySelectPlan({
+                  tahunan: !selectPlan.tahunan,
+                  lang_biling: !selectPlan.tahunan ? 'app_plan_yearly' : 'app_plan_monthly',
+                })
+              )
+            }
+          />
+          {formatMessage({ id: 'app_plan_yearly' })}
+        </Box>
+        <Box>{isError && <Alert severity="error">Paket belum dipilih</Alert>}</Box>
       </Box>
-      <Box>{isError && <Alert severity="error">Paket belum dipilih</Alert>}</Box>
       <div className={classes.button}>
         <ButtonStep message={formatMessage({ id: 'button_goback' })} click={handleBack} />
         <ButtonStep message={formatMessage({ id: 'button_nextstep' })} typevariant="contained" click={handleNext} />
       </div>
-    </Box>
+    </>
   );
 };
 

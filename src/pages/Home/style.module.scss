@@ -8,4 +8,8 @@
   gap: 10px;
   padding: 10px;
   max-height: 500px;
+  @include apply-at-smTolg-size {
+    @include directionY;
+  }
 }
+

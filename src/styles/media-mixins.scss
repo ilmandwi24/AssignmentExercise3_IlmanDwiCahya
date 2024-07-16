@@ -3,7 +3,7 @@ $screen-xs2-limit: 375px;
 $screen-height-limit: 700px;
 $screen-sm-limit: 576px;
 $screen-md-limit: 768px;
-$screen-lg-limit: 992px;
+$screen-lg-limit: 1020px;
 $screen-xl-limit: 1200px;
 $screen-xxl-limit: 1400px;
 $screen-1024-limit: 1024px;
@@ -16,6 +16,11 @@ $screen-1024-limit: 1024px;
 
 @mixin apply-at-xs2-size {
   @media (min-width: $screen-xs2-limit) and (min-height: $screen-height-limit) {
+    @content;
+  }
+}
+@mixin apply-at-smTolg-size {
+  @media (min-width: $screen-sm-limit) and (max-width: $screen-lg-limit){
     @content;
   }
 }
