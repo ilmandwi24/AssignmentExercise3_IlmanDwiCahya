@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { injectIntl } from 'react-intl';
-import { Grid, Skeleton } from '@mui/material';
+import { Skeleton } from '@mui/material';
 
 import { selectInfo, selectLoading, selectStep } from '@containers/App/selectors';
 

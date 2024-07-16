@@ -20,11 +20,6 @@
   .personalButtonHide {
     display: none;
   }
-
-  .personalButton {
-    @include directionX;
-    justify-content: end;
-  }
   @include apply-at-smTolg-size{
     position: relative;
     bottom: 50px;
@@ -44,6 +39,14 @@
       padding-bottom: 0;
     }
   }
+}
+.personalButton {
+  @include directionX;
+  justify-content: end;
+  background-color:hsl(0, 23%, 97%);
+  padding: 8px;
+  border-radius: 8px;
+  margin-top: 20px;
 }
 
 .labelControl {

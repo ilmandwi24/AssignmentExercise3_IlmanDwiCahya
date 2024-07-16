@@ -4,22 +4,23 @@ import { setStepBack, setStepNext } from '@containers/App/actions';
 import { createStructuredSelector } from 'reselect';
 import { selectAddOns, selectSelectPlan, selectStep } from '@containers/App/selectors';
 import { FormattedMessage, injectIntl } from 'react-intl';
+import { useState } from 'react';
 
 import CheckboxAddOns from '@components/CheckboxAddOns';
 import ButtonStep from '@components/Button';
+import { Alert, Box } from '@mui/material';
 
 import classes from './style.module.scss';
 
 const AddOns = ({ addOns, selectPlan, intl: { formatMessage } }) => {
   const dispatch = useDispatch();
+  const [isError, setIsError] = useState(false);
 
   const handleBack = () => {
     dispatch(setStepBack());
   };
   const handleNext = () => {
-    if (addOns.length === 0) {
-      return;
-    }
+    if (addOns.length === 0) return setIsError(true);
     dispatch(setStepNext());
   };
   return (
@@ -66,6 +67,9 @@ const AddOns = ({ addOns, selectPlan, intl: { formatMessage } }) => {
           }
         />
       </div>
+      <Box sx={{ position: 'absolute', bottom: '0', right: '0' }}>
+        {isError && <Alert severity="error">Paket belum dipilih</Alert>}
+      </Box>
       <div className={classes.button}>
         <ButtonStep message="button_goback" click={handleBack} />
         <ButtonStep message="button_nextstep" click={handleNext} typevariant="contained" />
