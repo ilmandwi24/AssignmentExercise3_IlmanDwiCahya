@@ -17,6 +17,10 @@
     padding-bottom: 20px;
   }
 
+  .personalButtonHide {
+    display: none;
+  }
+
   .personalButton {
     @include directionX;
     justify-content: end;

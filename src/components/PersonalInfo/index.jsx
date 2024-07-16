@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
+import { useRef } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { setInfo, setStepNext } from '@containers/App/actions';
@@ -12,6 +13,7 @@ import classes from './style.module.scss';
 
 const PersonalInfo = ({ intl: { formatMessage }, info }) => {
   const dispatch = useDispatch();
+  const buttonStep = useRef(null);
   const schema = yup
     .object()
     .shape({
@@ -32,6 +34,13 @@ const PersonalInfo = ({ intl: { formatMessage }, info }) => {
   const { handleSubmit, control } = useForm({
     resolver: yupResolver(schema),
   });
+
+  const handleButtonClick = () => {
+    // Programmatically click Button Step 2
+    if (buttonStep.current) {
+      buttonStep.current.click();
+    }
+  };
 
   const onSubmit = (data) => {
     data.phone = data?.phone.toString();
@@ -133,11 +142,14 @@ const PersonalInfo = ({ intl: { formatMessage }, info }) => {
             control={control}
             defaultValue={info?.phone ? `+62${info?.phone}` : ''}
           />
-
-          <div className={classes.personalButton}>
-            <ButtonStep message="button_nextstep" typevariant="contained" />
+          <div className={classes.personalButtonHide}>
+            <ButtonStep message="button_nextstep" typevariant="contained" refclick={buttonStep} />
           </div>
         </form>
+      </div>
+
+      <div className={classes.personalButton}>
+        <ButtonStep message="button_nextstep" typevariant="contained" click={handleButtonClick} />
       </div>
     </div>
   );
