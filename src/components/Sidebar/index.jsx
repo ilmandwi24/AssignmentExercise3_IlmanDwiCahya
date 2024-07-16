@@ -1,18 +1,19 @@
-import Box from '@mui/material/Box';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-import StepContent from '@mui/material/StepContent';
-import Button from '@mui/material/Button';
-
-import Typography from '@mui/material/Typography';
-
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { selectStep } from '@containers/App/selectors';
 import { connect, useDispatch } from 'react-redux';
 import { setSidebarStep } from '@containers/App/actions';
+import { useMediaQuery } from '@mui/material';
+
+import Box from '@mui/material/Box';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+import StepContent from '@mui/material/StepContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+
 import classes from './style.module.scss';
 
 const steps = [
@@ -36,6 +37,7 @@ const steps = [
 
 const Sidebar = ({ step }) => {
   const dispatch = useDispatch();
+  const isHorizontal = useMediaQuery('(min-width:576px) and (max-width:1020px)');
 
   const handleStep = (stepnum) => {
     dispatch(setSidebarStep(stepnum));
@@ -43,7 +45,7 @@ const Sidebar = ({ step }) => {
   return (
     <div className={classes.sidebar}>
       <Box>
-        <Stepper orientation="vertical" activeStep={step - 1}>
+        <Stepper orientation={isHorizontal ? 'horizontal' : 'vertical'} activeStep={step - 1}>
           {steps.map((sidebarStep, index) => (
             <Step key={sidebarStep.label}>
               <StepLabel
@@ -55,12 +57,12 @@ const Sidebar = ({ step }) => {
                 }}
               >
                 <Button onClick={() => handleStep(index + 1)} sx={{ color: 'white' }}>
-                  {sidebarStep.label}
+                  {isHorizontal ? '' : sidebarStep.label}
                 </Button>
               </StepLabel>
               <StepContent>
                 <Typography sx={{ color: 'white', fontSize: '16px' }}>
-                  <FormattedMessage id={sidebarStep.description} />
+                  {isHorizontal ? '' : <FormattedMessage id={sidebarStep.description} />}
                 </Typography>
               </StepContent>
             </Step>

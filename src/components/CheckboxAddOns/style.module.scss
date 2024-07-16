@@ -19,6 +19,14 @@
     .checked{
         background-color: hsl(228, 100%, 84%);
     }
+    @include apply-at-smTolg-size{
+        margin-top: 0;
+        margin-bottom: 5px;
+        padding-top: 0;
+        .addonsdesc h4{
+            font-size: 14px;
+        }
+    }
 }
 .checkboxaddons:checked{
     background-color: red;

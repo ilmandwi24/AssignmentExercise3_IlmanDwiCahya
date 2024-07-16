@@ -21,6 +21,25 @@
     @include directionX;
     justify-content: end;
   }
+  @include apply-at-smTolg-size{
+    position: relative;
+    bottom: 50px;
+    background-color: hsl(0, 23%, 97%);
+    @include directionY;
+    margin: 0 auto;
+    padding: 8px;
+    border-radius: 8px;
+    width: 50%;
+    .formWrapper small{
+      margin-top: 3px;
+    }
+    .formWrapper h2{
+      margin-bottom: 0;
+    }
+    .formControl form{
+      padding-bottom: 0;
+    }
+  }
 }
 
 .labelControl {

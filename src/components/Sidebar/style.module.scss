@@ -1,9 +1,12 @@
 .sidebar {
-  max-width: 400px;
   padding: 50px;
   background-image: url('/src/static/images/bg-sidebar-desktop.svg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   border-radius: 8px;
+  @include apply-at-smTolg-size {
+    margin: 0 10px;
+    background-image: url('/src/static/images/bg-sidebar-mobile.svg');
+  }
 }

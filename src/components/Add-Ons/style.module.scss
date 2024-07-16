@@ -6,7 +6,17 @@
         margin-top: 0;
     }
     p{
-        margin-top: 0;
+        margin-top: 5px;
+    }
+    @include apply-at-smTolg-size{
+        background-color: hsl(0, 23%, 97%);
+        padding: 8px;
+        width: 50%;
+        margin: 0 auto;
+        position: relative;
+        bottom: 50px;
+        border-radius: 8px;
+
     }
 }
 .button{
@@ -14,5 +24,12 @@
     justify-content: space-between;
     align-items: center;
     margin-top: 10px;
+
+    @include apply-at-smTolg-size{
+        background-color: hsl(0, 23%, 97%);
+        padding: 8px;
+        border-radius: 8px;
+        margin-top: 40px;
+    }
   }
   

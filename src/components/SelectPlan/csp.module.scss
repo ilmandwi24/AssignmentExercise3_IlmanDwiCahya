@@ -114,9 +114,39 @@
     }
   }
 }
+@include apply-at-smTolg-size{
+  .container{
+    background-color: hsl(0, 23%, 97%);
+    width: 300px;
+    margin: 0 auto;
+    position: relative;
+    bottom: 50px;
+    border-radius: 8px;
+    p{
+      margin-top: 0;
+    }
+    .listPlan{
+      height: 100%;
+      .plan{
+        margin-bottom: 3px;
+        padding: 10px;
+        height: 50px;
+      }
+    }
+    .switch{
+      margin-top: 20px;
+    }
+  }
+}
 .button {
   @include directionX;
   justify-content: space-between;
   align-items: center;
   margin-top: 3rem;
+  @include apply-at-smTolg-size{
+    background-color: hsl(0, 23%, 97%);
+    padding: 8px;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
 }
